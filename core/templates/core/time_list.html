@@ -26,7 +26,7 @@
             <tbody>
                 {% for time in times %}
                     <tr>
-                        <td><strong>{{ time.nome }}</strong></td>
+                        <td><strong><a href="{% url 'core:time_detail' time.pk %}">{{ time.nome }}</a></strong></td>
                         <td>{{ time.cidade }}</td>
                         <td>{{ time.data_fundacao|date:"d/m/Y" }}</td>
                             <td class="actions">

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{{ time.nome }} | Futebol{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <p class="eyebrow">Elenco do time</p>
+        <h1>{{ time.nome }}</h1>
+        <p class="lead">{{ time.cidade }} · Fundado em {{ time.data_fundacao|date:"d/m/Y" }}</p>
+    </div>
+    <a class="button" href="{% url 'core:jogador_form' %}">Novo jogador</a>
+</div>
+
+<div class="panel table-panel">
+    {% if jogadores %}
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Posição</th>
+                    <th>Idade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jogador in jogadores %}
+                <tr>
+                    <td>{{ jogador.nome }}</td>
+                    <td>{{ jogador.posicao }}</td>
+                    <td>{{ jogador.idade }}</td>
+                    <td>
+                        <div class="actions">
+                            <a href="{% url 'core:jogador_update' jogador.pk %}">Editar</a>
+                            <a class="link-danger" href="{% url 'core:jogador_confirm_delete' jogador.pk %}">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <h2>Nenhum jogador neste time</h2>
+        <p>Cadastre o primeiro jogador para formar o elenco.</p>
+        <a class="button" href="{% url 'core:jogador_form' %}">Cadastrar jogador</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

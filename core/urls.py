@@ -4,6 +4,7 @@ from .views import (
     home_view,
 
     time_list_view,
+    time_detail_view,
     time_form_view,
     time_confirm_delete_view,
     time_update_view,
@@ -23,6 +24,7 @@ urlpatterns = [
 
     # Times
     path("times/", time_list_view, name="time_list"),
+    path("times/<int:pk>/", time_detail_view, name="time_detail"),
     path("times/novo/", time_form_view, name="time_form"),
     path("times/<int:pk>/editar/", time_update_view, name="time_update"),
     path("times/<int:pk>/excluir/", time_confirm_delete_view, name="time_confirm_delete"),

@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import TimeForm, JogadorForm
 from .models import Time, Jogador
@@ -13,6 +12,14 @@ def home_view(request):
 def time_list_view(request):
     return (
         render(request, template_name="core/time_list.html", context={"times": Time.objects.all()})
+    )
+
+def time_detail_view(request, pk):
+    time = get_object_or_404(Time, pk=pk)
+    return render(
+        request,
+        template_name="core/time_detail.html",
+        context={"time": time, "jogadores": time.jogador_set.all()},
     )
 
 def time_form_view(request):

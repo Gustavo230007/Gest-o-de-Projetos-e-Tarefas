@@ -347,8 +347,9 @@ tr:last-child td {
         min-height: 64px;
     }
 
-    .main-nav a:not(.button) {
-        display: none;
+    .main-nav {
+        gap: 10px;
+        font-size: .9rem;
     }
 
     .empty-state,
