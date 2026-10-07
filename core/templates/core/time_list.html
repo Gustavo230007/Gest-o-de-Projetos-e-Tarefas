@@ -29,10 +29,10 @@
                         <td><strong>{{ time.nome }}</strong></td>
                         <td>{{ time.cidade }}</td>
                         <td>{{ time.data_fundacao|date:"d/m/Y" }}</td>
-                        <td class="actions">
-                            <a href="{% url 'core:time_update' time.pk %}">Editar</a>
-                            <a class="danger-link" href="{% url 'core:time_delete' time.pk %}">Excluir</a>
-                        </td>
+                            <td class="actions">
+                                <a href="{% url 'core:time_update' time.pk %}">Editar</a>
+                                <a class="danger-link" href="{% url 'core:time_confirm_delete' time.pk %}">Excluir</a>
+                            </td>
                     </tr>
                 {% endfor %}
             </tbody>
