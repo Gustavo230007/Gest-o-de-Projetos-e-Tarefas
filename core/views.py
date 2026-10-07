@@ -36,3 +36,16 @@ def time_confirm_delete_view(request, pk):
     return (
         render(request, template_name="core/time_confirm_delete.html", context={"time": time})
     )
+
+def time_update_view(request, pk):
+    time = Time.objects.get(pk=pk)
+    if request.method == "POST":
+        form = TimeForm(request.POST, instance=time)
+        if form.is_valid():
+            form.save()
+            return redirect("core:time_list")
+    else:
+        form = TimeForm(instance=time)
+    return (
+        render(request, template_name="core/time_form.html", context={"form": form})
+    )
