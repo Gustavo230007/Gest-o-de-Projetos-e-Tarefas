@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}Cadastro de Times{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+	<header class="site-header">
+		<div class="container header-content">
+			<a class="brand" href="{% url 'core:time_list' %}">Futebol</a>
+			<nav class="main-nav" aria-label="Navegação principal">
+				<a href="{% url 'core:time_list' %}">Times</a>
+				<a class="button button-small" href="{% url 'core:time_form' %}">Novo time</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container page-content">
+		{% if messages %}
+			<div class="messages">
+				{% for message in messages %}
+					<p class="message {{ message.tags }}">{{ message }}</p>
+				{% endfor %}
+			</div>
+		{% endif %}
+		{% block content %}{% endblock %}
+	</main>
+</body>
+</html>

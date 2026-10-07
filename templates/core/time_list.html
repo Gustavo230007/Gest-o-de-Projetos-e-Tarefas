@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Times | Futebol{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div>
+        <p class="eyebrow">Cadastro</p>
+        <h1>Times</h1>
+        <p class="lead">Consulte os times cadastrados no sistema.</p>
+    </div>
+    <a class="button" href="{% url 'core:time_form' %}">Novo time</a>
+</section>
+
+{% if times %}
+    <section class="panel table-panel" aria-labelledby="times-title">
+        <h2 id="times-title" class="sr-only">Lista de times</h2>
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cidade</th>
+                        <th>Fundação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for time in times %}
+                        <tr>
+                            <td><strong>{{ time.nome }}</strong></td>
+                            <td>{{ time.cidade }}</td>
+                            <td>{{ time.data_fundacao|date:"d/m/Y" }}</td>
+                            <td>
+                                <a class="link-danger" href="{% url 'core:time_confirm_delete' time.pk %}">Excluir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% else %}
+    <section class="panel empty-state">
+        <h2>Nenhum time cadastrado</h2>
+        <p>Adicione o primeiro time para começar a organizar seu cadastro.</p>
+        <a class="button" href="{% url 'core:time_form' %}">Cadastrar primeiro time</a>
+    </section>
+{% endif %}
+{% endblock %}

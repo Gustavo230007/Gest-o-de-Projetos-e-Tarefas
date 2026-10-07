@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{% if object %}Editar time{% else %}Novo time{% endif %} | Futebol{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <p class="eyebrow">Cadastro de times</p>
+    <h1>{% if object %}Editar time{% else %}Novo time{% endif %}</h1>
+    <p class="subtitle">Preencha os dados abaixo para continuar.</p>
+
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="form-field">
+                {{ field.label_tag }}
+                {{ field }}
+                {% for error in field.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <div class="form-actions">
+            <a class="button button-secondary" href="{% url 'time-list' %}">Cancelar</a>
+            <button class="button" type="submit">Salvar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
