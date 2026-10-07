@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Excluir Jogador{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <div class="page-header">
+        <div>
+            <p class="eyebrow">Jogadores</p>
+            <h1>Excluir jogador</h1>
+            <p class="lead">
+                Esta ação não poderá ser desfeita.
+            </p>
+        </div>
+    </div>
+
+    <div class="panel confirmation">
+
+        <p>
+            Tem certeza de que deseja excluir o jogador
+            <strong>{{ jogador.nome }}</strong>?
+        </p>
+
+        <p class="muted">
+            O jogador será removido permanentemente do sistema.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-actions">
+
+                <a class="button button-secondary"
+                   href="{% url 'core:jogador_list' %}">
+                    Cancelar
+                </a>
+
+                <button class="button button-danger" type="submit">
+                    Sim, excluir
+                </button>
+
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
