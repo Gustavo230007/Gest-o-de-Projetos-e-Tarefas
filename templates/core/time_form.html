@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Novo time | Futebol{% endblock %}
+
+{% block content %}
+<section class="form-page">
+    <p class="eyebrow">Cadastro de times</p>
+    <h1>Novo time</h1>
+    <p class="lead">Informe os dados do time para adicioná-lo ao sistema.</p>
+
+    <form class="panel form-card" method="post">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="form-errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        {% for field in form %}
+            <div class="field">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <small>{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="form-actions">
+            <a class="button button-light" href="{% url 'core:time_list' %}">Cancelar</a>
+            <button class="button" type="submit">Salvar time</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

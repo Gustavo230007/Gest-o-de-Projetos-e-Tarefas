@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Início | Futebol{% endblock %}
+
+{% block content %}
+<section class="home-hero">
+    <p class="eyebrow">Sistema de futebol</p>
+    <h1>Organize seus times.</h1>
+    <p class="subtitle">Cadastre e consulte as informações dos times de futebol em um só lugar.</p>
+    <a class="button" href="{% url 'core:time_list' %}">Ver times cadastrados</a>
+</section>
+
+<section class="home-highlight">
+    <div>
+        <p class="eyebrow">Comece agora</p>
+        <h2>Cadastro de times</h2>
+        <p>Adicione nome, cidade e data de fundação de cada time.</p>
+    </div>
+    <a class="button button-secondary" href="{% url 'core:time_form' %}">Cadastrar um time</a>
+</section>
+{% endblock %}
