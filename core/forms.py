@@ -1,5 +1,5 @@
 from django import forms
-from .models import Time
+from .models import Time, Jogador
 from django.core.exceptions import ValidationError
 
 class TimeForm(forms.ModelForm):
@@ -15,3 +15,9 @@ class TimeForm(forms.ModelForm):
         if Time.objects.filter(nome=nome).exists():
             raise ValidationError("Um time com este nome já existe.")
         return nome
+    
+class JogadorForm(forms.ModelForm):
+    class Meta:
+        model = Jogador
+        fields = ['nome', 'posicao', 'idade', 'time']
+    
